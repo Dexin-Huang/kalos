@@ -59,7 +59,7 @@ Claude reads this file and applies each metric to the extracted layout JSON.
 
 **Steps:**
 1. Collect all `lineHeight` values (resolved to px) from text elements
-2. Compute GCD of all line-height values — this is the base rhythm unit (ideally 4 or 8)
+2. Round all lineHeight values to the nearest integer before computing GCD. Use Euclidean GCD algorithm. If the resulting base unit is < 2, use 4 as the default base unit. The result is the base rhythm unit (ideally 4 or 8).
 3. For each text element: check `lineHeight % baseUnit === 0`
 4. For paragraph spacing (marginTop/marginBottom on `<p>` elements): check it equals 1x–2x the element's lineHeight
 5. Score = percentage of elements whose lineHeight is on the grid
@@ -105,9 +105,9 @@ CR = (L_lighter + 0.05) / (L_darker + 0.05)
 
 ---
 
-## Metric 5: Golden Ratio Proximity
+## Metric 5: Proportional Harmony
 
-**Purpose:** Check whether layout proportions approximate the golden ratio.
+**Purpose:** Check whether layout proportions follow a consistent proportional system. The golden ratio (φ = 1.618) is the primary named ratio, but the metric rewards any coherent proportional system applied consistently across the layout.
 
 **Golden ratio constant:** φ = 1.618033988749895
 **Tolerance:** ±0.15 (so range 1.468 to 1.768)
@@ -170,10 +170,13 @@ CR = (L_lighter + 0.05) / (L_darker + 0.05)
 
 **Formula:**
 ```
-chars_per_line ≈ element_width / (fontSize * 0.5)
+chars_per_line ≈ element_width / (fontSize * charWidthFactor)
 ```
 
-Note: The 0.5 factor is an approximation for average character width. For monospace fonts, use 0.6.
+The `charWidthFactor` depends on font family (detected via the `fontFamily` field):
+- Sans-serif fonts: 0.48
+- Serif fonts: 0.52
+- Monospace fonts: 0.60
 
 **Optimal range:** 45–75 characters per line
 **Acceptable range:** 35–90 characters per line
@@ -222,16 +225,25 @@ Only evaluate block-level text elements (paragraphs, headings, list items) — s
 C = count_distinct_font_sizes + count_distinct_spacing_values + count_distinct_colors
 ```
 
+Where `count_distinct_colors` is the count of distinct values in the UNION of `uniqueColors` and `uniqueBackgroundColors`.
+
 **Order (O):**
+
+All Order components must be normalized to [0, 1] before weighting:
+- `alignment_axes_count` normalized: `min(alignment_axes_count / 20, 1)` (cap at 20 axes)
+- `grid_compliance_rate`: already in [0, 1]
+- `scale_consistency`: already in [0, 1]
+- `symmetry_score`: already in [0, 1]
+
 ```
-O = alignment_axes_count * 2
+O = alignment_axes_norm * 2
   + grid_compliance_rate * 10
   + scale_consistency * 10
   + symmetry_score * 5
 ```
 
 Where:
-- `alignment_axes_count` = number of shared alignment lines (from Metric 7)
+- `alignment_axes_norm` = `min(alignment_axes_count / 20, 1)` (from Metric 7)
 - `grid_compliance_rate` = fraction of spacings on 8pt grid (from Metric 2)
 - `scale_consistency` = modular scale score (from Metric 1)
 - `symmetry_score` = fraction of elements with a horizontally mirrored counterpart (within 5% tolerance)
@@ -276,11 +288,11 @@ Weighted average of all metrics (scores normalized to 0–1, final reported as 0
 | Modular Scale (Metric 1) | 15% |
 | Spacing Harmony (Metric 2) | 15% |
 | Vertical Rhythm (Metric 3) | 10% |
-| Golden Ratio (Metric 5) | 10% |
+| Proportional Harmony (Metric 5) | 5% |
 | Alignment (Metric 7) | 10% |
 | Line Length (Metric 8) | 5% |
 | Gestalt Proximity (Metric 6) | 5% |
-| Visual Balance (Metric 9) | 5% |
+| Visual Balance (Metric 9) | 10% |
 | Birkhoff (Metric 10) | 5% |
 
 Animation Timing (Metric 11) is reported separately as a bonus metric — it doesn't factor into the main score since not all pages have animations.
