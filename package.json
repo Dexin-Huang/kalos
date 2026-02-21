@@ -43,10 +43,5 @@
   },
   "peerDependencies": {
     "playwright-cli": ">=1.50.0"
-  },
-  "peerDependenciesMeta": {
-    "playwright-cli": {
-      "optional": false
-    }
   }
 }
