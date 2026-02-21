@@ -1,0 +1,41 @@
+name: Feature Request
+description: Suggest a new metric, command, or improvement
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea? We'd love to hear it. Common contributions: new aesthetic metrics, better error messages, new CLI commands, or improved extraction coverage.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: "Describe the design quality issue or workflow gap. Example: 'I can't tell if my color palette has too much variety.'"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature you'd like, including any formula or algorithm ideas.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you've thought about?
+
+  - type: checkboxes
+    id: type
+    attributes:
+      label: Type of request
+      options:
+        - label: New metric
+        - label: New CLI command
+        - label: Improvement to existing metric
+        - label: Better error handling / DX
+        - label: Other

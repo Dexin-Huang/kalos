@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    name: Syntax check & smoke test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['18', '20', '22']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Check syntax — bin/design-audit.mjs
+        run: node --check bin/design-audit.mjs
+
+      - name: Check syntax — extract-layout.js
+        run: node --check skills/design-audit/scripts/extract-layout.js
+
+      - name: Smoke test — --version
+        run: node bin/design-audit.mjs --version
+
+      - name: Smoke test — --help
+        run: node bin/design-audit.mjs --help
+
+      - name: Smoke test — unknown command exits with error
+        run: |
+          node bin/design-audit.mjs unknown-command 2>&1; [ $? -ne 0 ] && echo "Correctly errored" || (echo "Should have exited non-zero" && exit 1)

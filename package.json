@@ -1,0 +1,52 @@
+{
+  "name": "design-audit-cli",
+  "version": "0.1.0",
+  "description": "Mathematical aesthetics audit for web pages — installable as a Claude Code skill",
+  "type": "module",
+  "bin": {
+    "design-audit": "./bin/design-audit.mjs"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "commands/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "prepublishOnly": "node --check bin/design-audit.mjs"
+  },
+  "keywords": [
+    "design",
+    "audit",
+    "aesthetics",
+    "wcag",
+    "contrast",
+    "typography",
+    "golden-ratio",
+    "claude-code",
+    "ai-skill",
+    "playwright-cli"
+  ],
+  "author": "Dexin Huang <dh3172@columbia.edu>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dexinhuang/design-audit-cli.git"
+  },
+  "homepage": "https://github.com/dexinhuang/design-audit-cli#readme",
+  "bugs": {
+    "url": "https://github.com/dexinhuang/design-audit-cli/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "playwright-cli": ">=1.50.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright-cli": {
+      "optional": false
+    }
+  }
+}

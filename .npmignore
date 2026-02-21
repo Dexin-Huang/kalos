@@ -1,0 +1,11 @@
+# Exclude dev/meta files from published package
+
+.github/
+tests/
+*.test.js
+CONTRIBUTING.md
+CHANGELOG.md
+.gitignore
+examples/
+
+# Keep: bin/, skills/, commands/, package.json, README.md, LICENSE

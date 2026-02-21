@@ -1,0 +1,17 @@
+node_modules/
+
+# Audit output files (generated at runtime)
+.claude/skills/design-audit/last-audit.json
+.claude/skills/design-audit/last-audit-screenshot.png
+.claude/skills/design-audit/reports/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
