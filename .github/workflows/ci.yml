@@ -33,4 +33,8 @@ jobs:
 
       - name: Smoke test — unknown command exits with error
         run: |
-          node bin/kalos.mjs unknown-command 2>&1; [ $? -ne 0 ] && echo "Correctly errored" || (echo "Should have exited non-zero" && exit 1)
+          if node bin/kalos.mjs unknown-command 2>&1; then
+            echo "Should have exited non-zero" && exit 1
+          else
+            echo "Correctly errored with exit code $?"
+          fi
