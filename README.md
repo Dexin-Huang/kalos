@@ -1,9 +1,9 @@
-# design-audit-cli
+# kalos
 
-[![npm version](https://img.shields.io/npm/v/design-audit-cli.svg)](https://www.npmjs.com/package/design-audit-cli)
+[![npm version](https://img.shields.io/npm/v/kalos.svg)](https://www.npmjs.com/package/kalos)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
-[![CI](https://github.com/dexinhuang/design-audit-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/dexinhuang/design-audit-cli/actions/workflows/ci.yml)
+[![CI](https://github.com/dexinhuang/kalos/actions/workflows/ci.yml/badge.svg)](https://github.com/dexinhuang/kalos/actions/workflows/ci.yml)
 
 > Mathematical aesthetics audit for any web page — installable as a Claude Code skill.
 
@@ -21,14 +21,14 @@ Users form aesthetic judgments in 50 milliseconds (Lindgaard et al., 2006). Thos
 
 Yet existing tools leave a gap. Lighthouse checks performance. Axe checks accessibility. Nothing checks whether your live page follows the mathematical principles designers have formalized over a century — from Müller-Brockmann's grid systems (1968) to Bringhurst's typographic scales (2004) to Ngo, Teo, and Byrne's computational aesthetics (2003).
 
-design-audit-cli fills that gap. It opens your page in a real browser, extracts computed styles, and scores them against 11 metrics grounded in design theory and perceptual psychology. The output isn't a pass/fail badge — it's a scored report with specific selectors, values, and fixes.
+kalos fills that gap. It opens your page in a real browser, extracts computed styles, and scores them against 11 metrics grounded in design theory and perceptual psychology. The output isn't a pass/fail badge — it's a scored report with specific selectors, values, and fixes.
 
 See [REFERENCES.md](REFERENCES.md) for the full citation list.
 
 ## Install
 
 ```bash
-npm install -g design-audit-cli
+npm install -g kalos
 # peer dependency
 npm install -g playwright-cli
 ```
@@ -38,7 +38,7 @@ npm install -g playwright-cli
 ```bash
 # Install the skill into your project
 cd your-project/
-design-audit install --skills
+kalos install --skills
 
 # Run in Claude Code
 /design-audit https://yoursite.com
@@ -51,19 +51,19 @@ Claude opens the page via playwright-cli, extracts layout data, computes all 11 
 ## CLI Usage
 
 ```
-design-audit install --skills     Copy skill files into .claude/skills/ and .claude/commands/
-design-audit run [url] [WxH]      Run layout extraction directly (outputs JSON + screenshot)
-design-audit --help               Show help
-design-audit --version            Show version
+kalos install --skills     Copy skill files into .claude/skills/ and .claude/commands/
+kalos run [url] [WxH]      Run layout extraction directly (outputs JSON + screenshot)
+kalos --help               Show help
+kalos --version            Show version
 
 Arguments:
   url     Full URL including scheme (default: http://localhost:3000)
   WxH     Viewport dimensions as WIDTHxHEIGHT (default: 1440x900)
 
 Examples:
-  design-audit install --skills
-  design-audit run http://localhost:3000
-  design-audit run https://example.com 1920x1080
+  kalos install --skills
+  kalos run http://localhost:3000
+  kalos run https://example.com 1920x1080
 ```
 
 ## Metrics
@@ -73,14 +73,14 @@ Overall aesthetic score (0-100, grade A-F) from 10 weighted metrics plus 1 bonus
 | # | Metric | Weight | What It Checks |
 |---|--------|--------|----------------|
 | 1 | Modular Scale Consistency | 15% | Font size ratios follow a named typographic scale |
-| 2 | Spacing Harmony | 15% | Margins/padding align to an 8pt grid |
+| 2 | Spacing Harmony | 15% | Margins/padding align to a detected grid unit |
 | 3 | Vertical Rhythm | 10% | Line heights align to a consistent base unit |
 | 4 | WCAG Contrast | 20% | Text/background contrast meets AA and AAA standards |
-| 5 | Proportional Harmony | 10% | Layout proportions follow consistent ratios (including φ = 1.618) |
+| 5 | Proportional Harmony | 5% | Layout proportions follow consistent ratios (including φ = 1.618) |
 | 6 | Gestalt Proximity | 5% | Related elements are grouped with clear separation |
 | 7 | Alignment Score | 10% | Elements share alignment axes within 2px |
 | 8 | Line Length | 5% | Text blocks fall in the 45-75 chars/line sweet spot |
-| 9 | Visual Weight Balance | 5% | Visual center of mass aligns with optical center |
+| 9 | Visual Weight Balance | 10% | Visual center of mass aligns with optical center |
 | 10 | Birkhoff Aesthetic Measure | 5% | Order-to-complexity ratio |
 | 11 | Animation Timing | bonus | Transitions use standard duration tokens |
 
@@ -131,7 +131,7 @@ See [`examples/example-report.md`](examples/example-report.md) for a full sample
 
 ## How It Works
 
-1. `design-audit install --skills` copies the skill files into `.claude/`.
+1. `kalos install --skills` copies the skill files into `.claude/`.
 2. `/design-audit` invokes playwright-cli to open the URL, take a screenshot, and run `extract-layout.js` via `page.evaluate()`.
 3. The extraction walks the DOM collecting computed styles (font sizes, spacing, colors, geometry, animation timing) into `last-audit.json`.
 4. Claude applies each metric formula from `aesthetic-formulas.md`, computing scores, thresholds, and violations.

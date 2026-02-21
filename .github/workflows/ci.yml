@@ -22,18 +22,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Check syntax — bin/design-audit.mjs
-        run: node --check bin/design-audit.mjs
+      - name: Check syntax — bin/kalos.mjs
+        run: node --check bin/kalos.mjs
 
       - name: Check syntax — extract-layout.js
         run: node --check skills/design-audit/scripts/extract-layout.js
 
       - name: Smoke test — --version
-        run: node bin/design-audit.mjs --version
+        run: node bin/kalos.mjs --version
 
       - name: Smoke test — --help
-        run: node bin/design-audit.mjs --help
+        run: node bin/kalos.mjs --help
 
       - name: Smoke test — unknown command exits with error
         run: |
-          node bin/design-audit.mjs unknown-command 2>&1; [ $? -ne 0 ] && echo "Correctly errored" || (echo "Should have exited non-zero" && exit 1)
+          node bin/kalos.mjs unknown-command 2>&1; [ $? -ne 0 ] && echo "Correctly errored" || (echo "Should have exited non-zero" && exit 1)

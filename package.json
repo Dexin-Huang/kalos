@@ -1,10 +1,10 @@
 {
-  "name": "design-audit-cli",
+  "name": "kalos",
   "version": "0.1.0",
   "description": "Mathematical aesthetics audit for web pages — installable as a Claude Code skill",
   "type": "module",
   "bin": {
-    "design-audit": "./bin/design-audit.mjs"
+    "kalos": "./bin/kalos.mjs"
   },
   "files": [
     "bin/",
@@ -15,7 +15,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "prepublishOnly": "node --check bin/design-audit.mjs"
+    "prepublishOnly": "node --check bin/kalos.mjs"
   },
   "keywords": [
     "design",
@@ -27,17 +27,18 @@
     "golden-ratio",
     "claude-code",
     "ai-skill",
-    "playwright-cli"
+    "playwright-cli",
+    "kalos"
   ],
   "author": "Dexin Huang <dh3172@columbia.edu>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dexinhuang/design-audit-cli.git"
+    "url": "git+https://github.com/dexinhuang/kalos.git"
   },
-  "homepage": "https://github.com/dexinhuang/design-audit-cli#readme",
+  "homepage": "https://github.com/dexinhuang/kalos#readme",
   "bugs": {
-    "url": "https://github.com/dexinhuang/design-audit-cli/issues"
+    "url": "https://github.com/dexinhuang/kalos/issues"
   },
   "engines": {
     "node": ">=18"

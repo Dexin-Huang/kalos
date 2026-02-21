@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * design-audit — CLI for mathematical aesthetics auditing
+ * kalos — Mathematical aesthetics audit for web pages
  *
  * Commands:
  *   install --skills    Copy skill files into .claude/skills/ and .claude/commands/
@@ -24,18 +24,18 @@ const command = args[0];
 
 function usage() {
   console.log(`
-design-audit v${VERSION} — Mathematical aesthetics audit for web pages
+kalos v${VERSION} — Mathematical aesthetics audit for web pages
 
 Usage:
-  design-audit install --skills     Install skill files into .claude/
-  design-audit run [url] [WxH]      Run layout extraction via playwright-cli
-  design-audit --help               Show this help message
-  design-audit --version            Show version
+  kalos install --skills     Install skill files into .claude/
+  kalos run [url] [WxH]      Run layout extraction via playwright-cli
+  kalos --help               Show this help message
+  kalos --version            Show version
 
 Examples:
-  design-audit install --skills
-  design-audit run http://localhost:3000
-  design-audit run http://localhost:3000 1920x1080
+  kalos install --skills
+  kalos run http://localhost:3000
+  kalos run https://example.com 1920x1080
 `.trim());
 }
 
@@ -82,7 +82,7 @@ if (!command || command === '--help' || command === '-h') {
   if (args.includes('--skills')) {
     installSkills();
   } else {
-    console.error('Usage: design-audit install --skills');
+    console.error('Usage: kalos install --skills');
     process.exit(1);
   }
 } else if (command === 'run') {

@@ -3,9 +3,9 @@
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/design-audit-cli.git
-cd design-audit-cli
-node bin/design-audit.mjs --help
+git clone https://github.com/YOUR_USERNAME/kalos.git
+cd kalos
+node bin/kalos.mjs --help
 ```
 
 No `npm install` needed — zero runtime dependencies. Install `playwright-cli` globally to test extraction.
@@ -13,15 +13,15 @@ No `npm install` needed — zero runtime dependencies. Install `playwright-cli` 
 ## Project Structure
 
 ```
-design-audit-cli/
-├── bin/design-audit.mjs              # CLI entrypoint
+kalos/
+├── bin/kalos.mjs                    # CLI entrypoint
 ├── skills/design-audit/
-│   ├── SKILL.md                      # Claude Code skill definition
+│   ├── SKILL.md                     # Claude Code skill definition
 │   ├── references/aesthetic-formulas.md
 │   └── scripts/
-│       ├── extract-layout.js         # DOM extraction (page.evaluate)
-│       └── run-extraction.sh         # playwright-cli wrapper
-├── commands/design-audit.md          # /design-audit slash command
+│       ├── extract-layout.js        # DOM extraction (page.evaluate)
+│       └── run-extraction.sh        # playwright-cli wrapper
+├── commands/design-audit.md         # /design-audit slash command
 ├── examples/
 │   ├── example-audit.json
 │   └── example-report.md
