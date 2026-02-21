@@ -101,7 +101,7 @@ One feature or fix per PR, please. Large refactors should be discussed in an iss
 
 ## Reporting Bugs
 
-Open a [GitHub issue](https://github.com/IrisSolutions/design-audit-cli/issues) and include:
+Open a [GitHub issue](https://github.com/dexinhuang/design-audit-cli/issues) and include:
 
 - `design-audit-cli` version (`design-audit --version`)
 - Node.js version (`node --version`)
