@@ -66,6 +66,12 @@ function run() {
   const url = args[1] || 'http://localhost:3000';
   const viewport = args[2] || '1440x900';
 
+  // Validate viewport format: must be NNNxNNN
+  if (!/^\d+x\d+$/.test(viewport)) {
+    console.error(`Error: Invalid viewport format '${viewport}'. Expected WIDTHxHEIGHT, e.g. 1440x900.`);
+    process.exit(1);
+  }
+
   // Find the extraction script — prefer installed version, fall back to package
   const installedScript = join(process.cwd(), '.claude', 'skills', 'design-audit', 'scripts', 'run-extraction.sh');
   const packageScript = join(PKG_ROOT, 'skills', 'design-audit', 'scripts', 'run-extraction.sh');

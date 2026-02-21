@@ -13,8 +13,22 @@
 
 set -euo pipefail
 
+# Check that playwright-cli is available
+if ! command -v playwright-cli &>/dev/null; then
+  echo "Error: playwright-cli is not installed or not in PATH." >&2
+  echo "Install it with: npm install -g playwright-cli" >&2
+  exit 1
+fi
+
 URL="${1:-http://localhost:3000}"
 VIEWPORT="${2:-1440x900}"
+
+# Validate viewport format: must be NNNxNNN (digits, lowercase x, digits)
+if ! echo "$VIEWPORT" | grep -qE '^[0-9]+x[0-9]+$'; then
+  echo "Error: Invalid viewport format '${VIEWPORT}'. Expected WIDTHxHEIGHT, e.g. 1440x900." >&2
+  exit 1
+fi
+
 W=$(echo "$VIEWPORT" | cut -dx -f1)
 H=$(echo "$VIEWPORT" | cut -dx -f2)
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"

@@ -32,11 +32,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dexinhuang/design-audit-cli.git"
+    "url": "git+https://github.com/IrisSolutions/design-audit-cli.git"
   },
-  "homepage": "https://github.com/dexinhuang/design-audit-cli#readme",
+  "homepage": "https://github.com/IrisSolutions/design-audit-cli#readme",
   "bugs": {
-    "url": "https://github.com/dexinhuang/design-audit-cli/issues"
+    "url": "https://github.com/IrisSolutions/design-audit-cli/issues"
   },
   "engines": {
     "node": ">=18"
