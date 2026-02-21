@@ -11,6 +11,20 @@ Quantifies design quality across 11 metrics: WCAG contrast, modular type scales,
 
 Installs as a [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill. Run `/design-audit https://yoursite.com` to get a scored report with screenshot and top 5 fixes.
 
+## Why
+
+Design quality is measurable. Most tools just don't measure it.
+
+In 1933, mathematician George Birkhoff proposed that aesthetic experience could be expressed as a ratio: order divided by complexity. Ninety years later, we still ship websites without measuring either.
+
+Users form aesthetic judgments in 50 milliseconds (Lindgaard et al., 2006). Those snap judgments predict perceived usability (Tractinsky et al., 2000) and trust (Lavie & Tractinsky, 2004). Design quality isn't subjective decoration — it's a measurable property with measurable business impact.
+
+Yet existing tools leave a gap. Lighthouse checks performance. Axe checks accessibility. Nothing checks whether your live page follows the mathematical principles designers have formalized over a century — from Müller-Brockmann's grid systems (1968) to Bringhurst's typographic scales (2004) to Ngo, Teo, and Byrne's computational aesthetics (2003).
+
+design-audit-cli fills that gap. It opens your page in a real browser, extracts computed styles, and scores them against 11 metrics grounded in design theory and perceptual psychology. The output isn't a pass/fail badge — it's a scored report with specific selectors, values, and fixes.
+
+See [REFERENCES.md](REFERENCES.md) for the full citation list.
+
 ## Install
 
 ```bash
@@ -62,7 +76,7 @@ Overall aesthetic score (0-100, grade A-F) from 10 weighted metrics plus 1 bonus
 | 2 | Spacing Harmony | 15% | Margins/padding align to an 8pt grid |
 | 3 | Vertical Rhythm | 10% | Line heights align to a consistent base unit |
 | 4 | WCAG Contrast | 20% | Text/background contrast meets AA and AAA standards |
-| 5 | Golden Ratio Proximity | 10% | Layout proportions approximate phi = 1.618 |
+| 5 | Proportional Harmony | 10% | Layout proportions follow consistent ratios (including φ = 1.618) |
 | 6 | Gestalt Proximity | 5% | Related elements are grouped with clear separation |
 | 7 | Alignment Score | 10% | Elements share alignment axes within 2px |
 | 8 | Line Length | 5% | Text blocks fall in the 45-75 chars/line sweet spot |

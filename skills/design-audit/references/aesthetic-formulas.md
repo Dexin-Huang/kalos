@@ -36,15 +36,16 @@ Claude reads this file and applies each metric to the extracted layout JSON.
 
 ---
 
-## Metric 2: Spacing Harmony (8pt Grid + Geometric Progression)
+## Metric 2: Spacing Harmony (Auto-Detected Grid + Geometric Progression)
 
 **Purpose:** Check that spacing values follow a systematic grid and progression.
 
 **Steps:**
 1. Extract all distinct margin and padding values (top/bottom/left/right) from elements, ignore 0
-2. **8pt grid compliance:** For each value, check `value % 8 === 0` (allow ±1px tolerance for subpixel rounding)
-3. **Geometric progression:** Sort all unique spacing values ascending, compute ratios between consecutive pairs, measure consistency (same CV formula as Metric 1)
-4. Score = `(grid_compliant_count / total_count) * 0.5 + scale_consistency * 0.5`
+2. **Auto-detect grid unit:** Find the GCD of the 5 most common spacing values (rounded to nearest integer). Common grids: 4pt, 6pt, 8pt. Use this detected grid unit for compliance checks.
+3. **Grid compliance:** For each value, check `value % detectedGridUnit === 0` (allow ±1px tolerance for subpixel rounding)
+4. **Geometric progression:** Sort all unique spacing values ascending, compute ratios between consecutive pairs, measure consistency (same CV formula as Metric 1)
+5. Score = `(grid_compliant_count / total_count) * 0.5 + scale_consistency * 0.5`
 
 **Thresholds:**
 - Pass: score >= 0.80
