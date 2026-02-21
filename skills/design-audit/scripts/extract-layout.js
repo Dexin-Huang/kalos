@@ -140,6 +140,7 @@ function() {
     const entry = {
       tag,
       selector: getSelector(el),
+      parentSelector: el.parentElement ? getSelector(el.parentElement) : undefined,
       isText,
       isInteractive,
       isSection: isSection && !isText,
@@ -153,6 +154,7 @@ function() {
       letterSpacing: style.letterSpacing === 'normal' ? 0 : parseFloat(style.letterSpacing) || 0,
       wordSpacing: style.wordSpacing === 'normal' ? 0 : parseFloat(style.wordSpacing) || 0,
       color,
+      colorParsed: parseColor(color),
       backgroundColor: bg.raw,
       backgroundColorParsed: { r: bg.r, g: bg.g, b: bg.b, a: bg.a },
       x: round1(rect.x),
