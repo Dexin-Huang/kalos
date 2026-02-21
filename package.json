@@ -11,6 +11,7 @@
     "skills/",
     "commands/",
     "README.md",
+    "REFERENCES.md",
     "LICENSE"
   ],
   "scripts": {
