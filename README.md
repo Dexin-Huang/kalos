@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/kalos.svg)](https://www.npmjs.com/package/kalos)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org)
-[![CI](https://github.com/dexinhuang/kalos/actions/workflows/ci.yml/badge.svg)](https://github.com/dexinhuang/kalos/actions/workflows/ci.yml)
+[![CI](https://github.com/Dexin-Huang/kalos/actions/workflows/ci.yml/badge.svg)](https://github.com/Dexin-Huang/kalos/actions/workflows/ci.yml)
 
 > Mathematical aesthetics audit for any web page — installable as a Claude Code skill.
 

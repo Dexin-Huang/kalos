@@ -34,11 +34,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dexinhuang/kalos.git"
+    "url": "git+https://github.com/Dexin-Huang/kalos.git"
   },
-  "homepage": "https://github.com/dexinhuang/kalos#readme",
+  "homepage": "https://github.com/Dexin-Huang/kalos#readme",
   "bugs": {
-    "url": "https://github.com/dexinhuang/kalos/issues"
+    "url": "https://github.com/Dexin-Huang/kalos/issues"
   },
   "engines": {
     "node": ">=18"
