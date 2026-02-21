@@ -25,9 +25,6 @@ jobs:
       - name: Check syntax — bin/kalos.mjs
         run: node --check bin/kalos.mjs
 
-      - name: Check syntax — extract-layout.js
-        run: node --check skills/design-audit/scripts/extract-layout.js
-
       - name: Smoke test — --version
         run: node bin/kalos.mjs --version
 
